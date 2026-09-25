@@ -1,0 +1,36 @@
+{
+  "name": "mermaid-mcp",
+  "version": "1.0.0",
+  "description": "Production-ready MCP server for Mermaid — read, create, update and delete diagrams and collections over the Mermaid REST API",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mermaid",
+    "diagrams",
+    "llm"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "mermaid-mcp": "src/index.js"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "start:stdio": "node src/index.js --stdio",
+    "dev": "node --watch src/index.js",
+    "test": "node --test 'test/**/*.test.js'"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "express": "^5.2.1",
+    "zod": "^3.25.76"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
