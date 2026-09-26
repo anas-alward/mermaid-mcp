@@ -110,6 +110,33 @@ docker run -d -p 8120:8120 -e MERMAID_BASE_URL=https://mermaid.alward.dev mermai
 The image runs as the unprivileged `node` user and ships a `HEALTHCHECK` against `/healthz`, so
 `docker run` reports `healthy` on its own.
 
+### Deploying to a server
+
+The repo is the source of truth. Clone it on the host and build from the checkout:
+
+```bash
+git clone https://github.com/anas-alward/mermaid-mcp.git mcp-server
+cd mcp-server && npm ci          # only needed to run the suite on the host
+```
+
+To deploy an update:
+
+```bash
+cd mcp-server && git pull
+cd .. && docker compose build mcp && docker compose up -d mcp
+docker compose ps                 # wait for (healthy)
+curl -s localhost:8120/healthz   # version confirms which build is live
+```
+
+Two things to know when the server directory is a git checkout:
+
+- `.env` is gitignored, so it never travels with the clone. Create it on the host; the compose file
+  declares it `required: false`, and the server only reads it for `--stdio`.
+- `.dockerignore` excludes `.git`, so clone history stays out of the build context and the image.
+
+Without git on the host, rsync the tree instead — the deploy directory only needs to match the
+repository, plus `.env`.
+
 ---
 
 ## Authentication
