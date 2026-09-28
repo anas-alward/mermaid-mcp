@@ -1,5 +1,7 @@
 # mermaid-mcp
 
+![MCP Server for Mermaid — AI Assistant (Claude, ChatGPT, etc.) → MCP Server → Flowchart, Sequence Diagram, Architecture Diagram](docs/diagram.png)
+
 An [MCP](https://modelcontextprotocol.io) server that gives an AI agent full access to your
 [Mermaid](https://mermaid.alward.dev) diagrams and collections — list, read, create, update and
 delete over the Mermaid REST API.
